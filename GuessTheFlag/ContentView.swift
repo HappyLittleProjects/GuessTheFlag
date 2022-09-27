@@ -46,10 +46,7 @@ struct ContentView: View {
                         Button{
                             flagButton_Clicked(number)
                         } label: {
-                            Image(countries[number])
-                                .renderingMode(.original)
-                                .clipShape(Capsule())
-                                .shadow(radius: 5)
+                            FlagImage(img: countries[number])
                         }
                         .alert(scoreDisplayTitle, isPresented: $scoreDisplay){
                             Button("Continue", action: nextQuestion)
@@ -92,6 +89,17 @@ struct ContentView: View {
         }
         countries.shuffle()
         correctAnswer = Int.random(in: 0...2)
+    }
+}
+
+struct FlagImage: View{
+    var img: String
+    
+    var body: some View{
+        Image(img)
+            .renderingMode(.original)
+            .clipShape(Capsule())
+            .shadow(radius: 5)
     }
 }
 
